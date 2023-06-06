@@ -111,16 +111,8 @@ const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Validar los campos del formulario
-    if (name.length < 10) {
-      setNameError('Name should have at least 10 characters');
-      return;
-    }
-    else{
-        setNameError('');
-    }
-
+    
+    // Validating the form
     if (email.endsWith('gmail.com')) {
       setEmailError('Invalid email address, you can not use a gmail email');
       return;
@@ -129,9 +121,15 @@ const ContactForm = () => {
         setEmailError('');
     }
 
-    // Realizar acciones adicionales con los datos del formulario
+    if (name.length < 10) {
+      setNameError('Name should have at least 10 characters');
+      return;
+    }
+    else{
+        setNameError('');
+    }
 
-    // Limpiar los campos del formulario
+    // Cleaning the form inputs
     setName('');
     setEmail('');
     setPhoneNumber('');
@@ -147,8 +145,8 @@ const ContactForm = () => {
         <p className="text-2xl font-bold mt-10 mb-4">Thank you for submitting the form!</p>
       ) : (
         <form onSubmit={handleSubmit} className='flex flex-col'>
-          <NameInput value={name} nameError={nameError} onChange={(e) => setName(e.target.value)} />
           <EmailInput value={email} emailError={emailError} onChange={(e) => setEmail(e.target.value)} />
+          <NameInput value={name} nameError={nameError} onChange={(e) => setName(e.target.value)} />
           <PhoneNumberInput
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}

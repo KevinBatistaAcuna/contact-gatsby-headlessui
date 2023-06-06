@@ -11,7 +11,7 @@ const NameInput = ({ value, onChange, nameError }) => {
         value={value}
         onChange={onChange}
         required
-        className="border border-gray-300 rounded px-4 py-2 mb-4"
+        className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
         />
         {nameError && <p className="text-red mb-4">{nameError}</p>}
     </>
@@ -27,7 +27,7 @@ const EmailInput = ({ value, onChange, emailError }) => {
         value={value}
         onChange={onChange}
         required
-        className="border border-gray-300 rounded px-4 py-2 mb-4"
+        className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
         />
         {emailError && <p className="text-red mb-4">{emailError}</p>}
     </>
@@ -42,7 +42,7 @@ const PhoneNumberInput = ({ value, onChange }) => {
       value={value}
       onChange={onChange}
       required
-      className="border border-gray-300 rounded px-4 py-2 mb-4"
+      className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
     />
   );
 };
@@ -142,7 +142,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="bg-white pr-8">
+    <div className="bg-white md:pr-8">
       {submitted ? (
         <p className="text-2xl font-bold mt-10 mb-4">Thank you for submitting the form!</p>
       ) : (
@@ -160,7 +160,7 @@ const ContactForm = () => {
           />
           <button
             type="submit"
-            className="bg-black text-white rounded px-4 py-2 w-52 self-end"
+            className="bg-black text-white rounded px-4 py-2 w-full md:w-52 self-end"
           >
             Submit
           </button>

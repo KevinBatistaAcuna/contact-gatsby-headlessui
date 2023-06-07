@@ -113,7 +113,7 @@ const ContactForm = () => {
     e.preventDefault();
     
     // Validating the form
-    if (email.endsWith('gmail.com')) {
+    if (email.includes('@gmail')) {
       setEmailError('Invalid email address, you can not use a gmail email');
       return;
     }

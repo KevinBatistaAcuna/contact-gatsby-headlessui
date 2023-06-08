@@ -51,8 +51,9 @@ const OptionsListbox = ({ value, options, onChange }) => {
   return (
     <Listbox value={value} onChange={onChange}>
       <div className="relative mb-4">
+        <Listbox.Label className="absolute bg-white text-xs left-2.5 px-2.5" style={{'top': '-8px'}}>How can we help you?</Listbox.Label>
         <Listbox.Button className="border border-gray-300 rounded px-4 py-2 w-full text-left">
-          {value ? value.label : 'How can we help you?'}
+          {value ? value.label : 'Sales'}
         </Listbox.Button>
         <Listbox.Options className="absolute z-10 w-full bg-white border border-gray-300 mx-0 rounded">
           {options.map((option) => (

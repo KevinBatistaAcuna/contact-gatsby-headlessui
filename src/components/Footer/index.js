@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import ListItems from '../ListItems';
 
-function Footer() {
+const Footer = forwardRef(function Footer(props) {
     let technologies = ['Free Trial', 'Azure', 'AWS', 'Google'];
     let services = ['Resources', 'Terms Of Service', 'Privacy Policy', 'Support'];
+    function focusHandler(){
+        props.inputRef.current.focus();
+    }
 
   return (
     <footer className='bg-blacky text-white'>
@@ -14,7 +17,7 @@ function Footer() {
             </ul>
             <ListItems items={technologies}/>
             <ListItems items={services} />
-            <p className='md:self-start cursor-pointer md:w-fit w-full text-center'>↑</p>
+            <p className='md:self-start cursor-pointer md:w-fit w-full text-center' onClick={focusHandler}>↑</p>
         </div>
         <div className='w-full text-center'>
             <hr className='m-0 bg-white'/>
@@ -22,6 +25,6 @@ function Footer() {
         </div>
     </footer>
   )
-}
+});
 
 export default Footer

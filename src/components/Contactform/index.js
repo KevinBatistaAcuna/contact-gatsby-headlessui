@@ -1,51 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { Listbox } from '@headlessui/react';
 import { CheckIcon } from '@heroicons/react/solid';
-
-const NameInput = ({ value, onChange, nameError }) => {
-  return (
-    <>
-        <input
-        type="text"
-        placeholder="Name"
-        value={value}
-        onChange={onChange}
-        required
-        className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
-        />
-        {nameError && <p className="text-red mb-4">{nameError}</p>}
-    </>
-  );
-};
-
-const EmailInput = ({ value, onChange, emailError }) => {
-  return (
-    <>
-        <input
-        type="email"
-        placeholder="Email"
-        value={value}
-        onChange={onChange}
-        required
-        className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
-        />
-        {emailError && <p className="text-red mb-4">{emailError}</p>}
-    </>
-  );
-};
-
-const PhoneNumberInput = ({ value, onChange }) => {
-  return (
-    <input
-      type="tel"
-      placeholder="Phone Number"
-      value={value}
-      onChange={onChange}
-      required
-      className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
-    />
-  );
-};
 
 const OptionsListbox = ({ value, options, onChange }) => {
   return (
@@ -94,7 +49,7 @@ const OptionsListbox = ({ value, options, onChange }) => {
   );
 };
 
-const ContactForm = () => {
+const ContactForm = forwardRef(function ContactForm(props) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -146,12 +101,41 @@ const ContactForm = () => {
         <p className="text-2xl font-bold mt-10 mb-4">Thank you for submitting the form!</p>
       ) : (
         <form onSubmit={handleSubmit} className='flex flex-col'>
-          <EmailInput value={email} emailError={emailError} onChange={(e) => setEmail(e.target.value)} />
-          <NameInput value={name} nameError={nameError} onChange={(e) => setName(e.target.value)} />
-          <PhoneNumberInput
+
+          {/* Email input */}
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
+            ref={props.inputRef}
+          />
+          {emailError && <p className="text-red mb-4">{emailError}</p>}
+
+          {/* Name input */}
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
+          />
+          {nameError && <p className="text-red mb-4">{nameError}</p>}
+
+          {/* Phone Number Input */}
+          <input
+            type="tel"
+            placeholder="Phone Number"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
+            required
+            className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
           />
+
+          {/* Options dropdown */}
           <OptionsListbox
             value={selectedOption}
             options={options}
@@ -167,6 +151,6 @@ const ContactForm = () => {
       )}
     </div>
   );
-};
+});
 
 export default ContactForm;
